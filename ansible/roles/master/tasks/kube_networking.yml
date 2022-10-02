@@ -1,0 +1,12 @@
+- name: Copy file with owner and permissions
+  template:
+    src: ./files/flannel/kube-flannel.yml
+    dest: "/home/{{ansible_ssh_user}}/kube-flannel.yml"
+
+
+- name: Apply flannel networking
+  ansible.builtin.shell: "kubectl apply -f /home/{{ansible_ssh_user}}/kube-flannel.yml"
+  args:
+    executable: /bin/bash
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf

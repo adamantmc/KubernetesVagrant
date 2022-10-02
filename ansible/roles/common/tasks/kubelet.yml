@@ -1,0 +1,8 @@
+- name: Register node_ip_address variable
+  ansible.builtin.shell: ip -f inet addr show eth1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+  register: node_ip_address
+
+- name: Copy config.yml
+  lineinfile:
+    line: Environment="KUBELET_EXTRA_ARGS=--node-ip={{node_ip_address.stdout}}"
+    path: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf

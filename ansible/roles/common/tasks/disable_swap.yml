@@ -1,0 +1,9 @@
+- name: Swapoff
+  ansible.builtin.shell: swapoff -a
+  args:
+    executable: /bin/bash
+
+- name: Disable swap on startup in /etc/fstab
+  ansible.builtin.shell: sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+  args:
+    executable: /bin/bash

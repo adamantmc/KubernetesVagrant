@@ -1,0 +1,13 @@
+---
+- hosts: all
+  roles:
+    - common
+- hosts: master
+  vars:
+    pod_cidr_range: "10.244.0.0/16"
+  roles:
+    - master
+    - cluster_vars
+- hosts: workers
+  roles:
+    - worker

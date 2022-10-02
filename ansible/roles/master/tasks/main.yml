@@ -1,0 +1,7 @@
+- name: Init cluster
+  import_tasks: kubeadm_init.yml
+  tags: kubeadm_cluster_init
+
+- name: Cluster networking
+  import_tasks: kube_networking.yml
+  tags: kube_networking

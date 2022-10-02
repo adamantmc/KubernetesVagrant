@@ -1,0 +1,27 @@
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: latest
+    update_cache: true
+
+- name: Add kubeadm GPG apt Key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Add kubeadm Repository
+  apt_repository:
+    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Update apt and install kubeadm, kubectl, kubelet
+  apt:
+    pkg:
+      - kubelet=1.25.2-00
+      - kubeadm=1.25.2-00
+      - kubectl=1.25.2-00
+    update_cache: true

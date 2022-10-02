@@ -1,0 +1,9 @@
+- name: Reset cluster
+  ansible.builtin.shell: kubeadm reset -f
+  args:
+    executable: /bin/bash
+
+- name: Init cluster
+  ansible.builtin.shell: "kubeadm init --pod-network-cidr {{ pod_cidr_range }} --apiserver-advertise-address {{ ansible_ssh_host }}"
+  args:
+    executable: /bin/bash

@@ -1,0 +1,3 @@
+- name: Join cluster
+  import_tasks: join_cluster.yml
+  tags: kubeadm_cluster_join

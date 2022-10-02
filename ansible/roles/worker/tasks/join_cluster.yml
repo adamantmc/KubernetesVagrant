@@ -1,0 +1,10 @@
+- name: Reset kubeadm
+  ansible.builtin.shell: kubeadm reset -f
+  args:
+    executable: /bin/bash
+
+
+- name: Join cluster
+  ansible.builtin.shell: "{{ hostvars['master_node']['kubeadm_join_command'].stdout }}"
+  args:
+    executable: /bin/bash

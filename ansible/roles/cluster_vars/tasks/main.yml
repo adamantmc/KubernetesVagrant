@@ -1,0 +1,3 @@
+- name: Get join command
+  import_tasks: join_command.yml
+  tags: cluster_vars

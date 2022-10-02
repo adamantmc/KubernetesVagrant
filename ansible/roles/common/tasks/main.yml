@@ -1,0 +1,23 @@
+- name: Install Docker
+  import_tasks: docker.yml
+  tags: docker
+
+- name: Configure Containerd
+  import_tasks: containerd.yml
+  tags: containerd
+
+- name: Install kubeadm
+  import_tasks: kubeadm.yml
+  tags: kubeadm
+
+- name: Configure kubelet
+  import_tasks: kubelet.yml
+  tags: kubelet
+
+- name: Disable Swap
+  import_tasks: disable_swap.yml
+  tags: disable_swap
+
+- name: Restart Services
+  import_tasks: restart_services.yml
+  tags: restart_services
